@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": [
+            "es6", "dom"
+        ],
+        "types": [
+            "node",
+            "chrome"
+        ],
+        "resolveJsonModule": true,
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "experimentalDecorators": true,
+        "declaration": false,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "include": [
+        "./src/app.ts"
+    ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "nas-server",
+  "version": "1.0.0",
+  "description": "Node.js assets server",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CH563/nas-server.git"
+  },
+  "keywords": [
+    "nas",
+    "node",
+    "assets",
+    "http",
+    "server"
+  ],
+  "author": "CH563",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CH563/nas-server/issues"
+  },
+  "homepage": "https://github.com/CH563/nas-server#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "koa": "^2.13.1",
+    "koa-logger": "^3.2.1",
+    "minimist": "^1.2.5",
+    "portfinder": "^1.0.28"
+  },
+  "devDependencies": {
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5",
+    "@types/node": "^15.14.0"
+  }
+}
