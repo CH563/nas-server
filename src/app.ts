@@ -58,12 +58,14 @@ if (argv.h || argv.help) {
 }
 
 let logger = {
+    isToLog: false,
     info(...data: any[]) {
         //
     }
 };
 if (!argv.s && !argv.silent) {
     logger = {
+        isToLog: true,
         info: console.log
     };
 }
@@ -75,15 +77,18 @@ if (argv.v || argv.version) {
 const rootPath = argv._[0] || './';
 
 const listen = (serverPort: number) => {
-    const server = new Server();
+    const server = new Server({
+        rootPath,
+        isToLog: logger.isToLog
+    });
     server.listen(serverPort, '0.0.0.0', () => {
         logger.info([colors.yellow(`Starting up ${name}, serving `),
             colors.cyan(rootPath),
             colors.yellow('\nAvailable on:')
         ].join(''));
-        const iFaces = os.networkInterfaces();
-        Object.keys(iFaces).forEach((dev) => {
-            iFaces[dev].forEach((details) => {
+        const iFaces = os.networkInterfaces() as any;
+        Object.keys(iFaces).forEach((dev: string) => {
+            iFaces[dev].forEach((details: any) => {
                 if (details.family === 'IPv4') {
                     logger.info(('  http://' + details.address + ':' + colors.green(serverPort.toString())));
                 }
@@ -93,7 +98,7 @@ const listen = (serverPort: number) => {
     })
 }
 
-const port = argv.p || argv.port || parseInt(process.env.PORT, 10);
+const port = argv.p || argv.port || parseInt(process.env.PORT || '', 10);
 if (!port) {
     portfinder.basePort = 8080;
     portfinder.getPort((err, newPort: number) => {
